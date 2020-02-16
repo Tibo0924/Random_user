@@ -1,18 +1,20 @@
 import React, { useReducer } from "react";
 import { useFetch } from "./Hooks";
-const Header = props => {
+import Auth from "../HomePage/Auth";
+
+const LandingPage = props => {
 	return (
 		<div className='home__wrapper'>
 			<div className='home__background'>
 				{Background()}
 				<img src='' alt='' />
 			</div>
-			<div className='home__loginDetails'>{NameForm()}</div>
+			<div className='home__loginDetails'>{NameForm(props)}</div>
 		</div>
 	);
 };
 
-function NameForm() {
+function NameForm(props) {
 	function reducer(state, { field, value }) {
 		return {
 			...state,
@@ -62,7 +64,16 @@ function NameForm() {
 			<a className='register' href='#'>
 				Register
 			</a>
-			<input type='submit' name='submit' value='Log In' />
+			<input
+				onClick={() => {
+					Auth.login(() => {
+						props.history.push("/app");
+					});
+				}}
+				type='submit'
+				name='submit'
+				value='Log In'
+			/>
 		</form>
 	);
 }
@@ -88,4 +99,4 @@ function Background() {
 	);
 }
 
-export default Header;
+export default LandingPage;
