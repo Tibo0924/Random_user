@@ -5,13 +5,15 @@ import HomePage from "./Components/HomePage/HomePage.js";
 import { ProtectedRoute } from "./Components/HomePage/ProtectedRoute";
 
 import "./App.scss";
+import { render } from "@testing-library/react";
+
 function App() {
 	return (
 		<div className='App'>
 			<BrowserRouter>
 				<Switch>
 					<Route exact path='/' component={LandingPage} />
-					<ProtectedRoute exact path='/app' component={HomePage} />
+					<ProtectedRoute exact path='/app' component={() => <HomePage />} />
 					<Route path='*' component={() => "404 NOT FOUND"} />
 				</Switch>
 			</BrowserRouter>

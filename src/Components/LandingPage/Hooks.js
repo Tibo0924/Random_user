@@ -6,7 +6,6 @@ function useFetch(url) {
 		const response = await fetch(url);
 		const json = await response.json();
 		setData(json.results);
-		console.log(json.results);
 		setLoading(false);
 	}
 	useEffect(() => {
