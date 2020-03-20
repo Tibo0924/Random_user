@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
+const userContext = createContext();
 function useFetch(url) {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -13,4 +14,4 @@ function useFetch(url) {
 	}, []);
 	return [data, loading];
 }
-export { useFetch };
+export { useFetch, userContext };

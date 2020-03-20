@@ -1,0 +1,10 @@
+.__homepage {
+	display: flex;
+	flex-direction: column;
+	.user_image {
+		width: 150px;
+		padding: 2px;
+		box-shadow: 0px 0px 1px 0px black;
+		margin: 1%;
+	}
+}

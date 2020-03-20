@@ -3,8 +3,7 @@
 	flex-direction: column;
 	height: 98vh;
 	.home__background {
-		height: 50vh;
-		.user_wrapper {
+		.__landingpage {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-evenly;
@@ -14,16 +13,12 @@
 		}
 	}
 	.home__loginDetails {
-		display: flex;
-		flex-direction: column;
-		height: 50vh;
-		align-items: center;
-
+		max-height: 100%;
+		background: red;
 		@import url(https://fonts.googleapis.com/css?family=Lily+Script+One);
-
 		form {
 			margin: 0 auto 0 auto;
-			padding: 30px;
+			padding: 40px;
 			width: auto;
 			height: auto;
 			overflow: hidden;

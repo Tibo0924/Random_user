@@ -5,7 +5,11 @@ import Auth from "../HomePage/Auth";
 const LandingPage = props => {
 	return (
 		<div className='home__wrapper'>
-			<div className='home__background'>{Background()}</div>
+			<div className='home__background'>
+				<div className='user_wrapper'>
+					{Background("medium", 20, "__landingpage")}
+				</div>
+			</div>
 			<div className='home__loginDetails'>{NameForm(props)}</div>
 		</div>
 	);
@@ -75,17 +79,22 @@ function NameForm(props) {
 	);
 }
 
-export const Background = (size, NoU) => {
+export const Background = (size, NoU, className, userData) => {
+	// * - Settings -
+	// * size - small,medium,large
+	// * NoU - NumberOfUsers
+	// * className - for CSS reference
+	// * userData - Boolean
 	const [data, loading] = useFetch(
 		`https://randomuser.me/api/?results=${NoU || 20}`
 	);
 	return (
 		<div>
 			{loading ? (
-				// Todo need spinner logo w/ fadeout
+				// ****** Todo need spinner logo w/ fadeout
 				"loading..."
 			) : (
-				<div className='user_wrapper'>
+				<div className={`user_wrapper` && className}>
 					{data.map((user, i) => (
 						<img
 							className='user_image'

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { userContext } from "../LandingPage/Hooks";
 import { Background } from "../LandingPage/LandingPage";
 
 const HomePage = () => {
-	return <div>{Background("large", 1)}</div>;
+	console.log(userContext);
+	return <div>{Background("large", 3, "__homepage")}</div>;
 };
 
 export default HomePage;
