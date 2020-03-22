@@ -1,13 +1,14 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import { useFetch } from "./Hooks";
 import Auth from "../HomePage/Auth";
-
+import countryCodeToFlag from "country-code-to-flag";
+import SimpleMap from "../LandingPage/GoogleMap";
 const LandingPage = props => {
 	return (
 		<div className='home__wrapper'>
 			<div className='home__background'>
 				<div className='user_wrapper'>
-					{Background("medium", 20, "__landingpage")}
+					{UserGenerator("medium", 20, "__landingpage", "LANDINGPAGE")}
 				</div>
 			</div>
 			<div className='home__loginDetails'>{NameForm(props)}</div>
@@ -15,7 +16,7 @@ const LandingPage = props => {
 	);
 };
 
-function NameForm(props) {
+const NameForm = props => {
 	function reducer(state, { field, value }) {
 		return {
 			...state,
@@ -77,9 +78,9 @@ function NameForm(props) {
 			/>
 		</form>
 	);
-}
+};
 
-export const Background = (size, NoU, className, userData) => {
+export const UserGenerator = (size, NoU, className, page) => {
 	// * - Settings -
 	// * size - small,medium,large
 	// * NoU - NumberOfUsers
@@ -88,6 +89,9 @@ export const Background = (size, NoU, className, userData) => {
 	const [data, loading] = useFetch(
 		`https://randomuser.me/api/?results=${NoU || 20}`
 	);
+
+	const [clicked, setClicked] = useState(true);
+
 	return (
 		<div>
 			{loading ? (
@@ -96,11 +100,40 @@ export const Background = (size, NoU, className, userData) => {
 			) : (
 				<div className={`user_wrapper` && className}>
 					{data.map((user, i) => (
-						<img
-							className='user_image'
-							src={user.picture[size] || user.picture.medium}
-							key={user.id.value || i}
-						/>
+						<div className='user_container'>
+							<img
+								className='user_image'
+								src={user.picture[size] || user.picture.medium}
+								key={user.id.value || i}
+							/>
+							<div>
+								{page !== "LANDINGPAGE" && (
+									<div className='detail_container'>
+										<div className='content_aligner'>
+											<span className='user_name'>{user.name.first}</span>{" "}
+											<span className='user_dob'>{user.dob.age}</span>
+											<br></br>
+											<span className='user_dob'>{user.location.country}</span>
+										</div>
+										<div className='content_aligner'>
+											<div className='user_location'>
+												<div className='country_flag'>
+													{countryCodeToFlag(user.nat)}
+												</div>
+												<div className='user_onMap'>
+													<button
+														id={user.name.first}
+														onClick={e => setClicked(id)}>
+														Click me
+													</button>
+													{clicked && <SimpleMap />}
+												</div>
+											</div>
+										</div>
+									</div>
+								)}
+							</div>
+						</div>
 					))}
 				</div>
 			)}

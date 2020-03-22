@@ -1,17 +1,9 @@
-#root {
+.App {
 	display: flex;
-	align-content: center;
-	width: 100%;
+	align-items: center;
 	justify-content: center;
-	max-height: 100%;
-
-	.App {
-		max-width: 400px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
 }
+
 @import "../src/scss/news.scss";
 @import "../src/scss/Login_header.scss";
 @import "../src/scss/homepage.scss";
