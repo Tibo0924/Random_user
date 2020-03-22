@@ -1,6 +1,8 @@
 .home__wrapper {
 	display: flex;
 	flex-direction: column;
+	max-width: 400px;
+
 	height: 98vh;
 	.home__background {
 		.__landingpage {
