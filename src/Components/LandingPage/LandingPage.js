@@ -123,7 +123,7 @@ export const UserGenerator = (size, NoU, className, page) => {
 												<div className='user_onMap'>
 													<button
 														id={user.name.first}
-														onClick={e => setClicked(id)}>
+														onClick={e => setClicked(e)}>
 														Click me
 													</button>
 													{clicked && <SimpleMap />}
